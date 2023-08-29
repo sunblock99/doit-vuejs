@@ -8,6 +8,11 @@
             <my-global-component></my-global-component>
             <my-local-component></my-local-component>
         </div>
+        <div id="app2">
+            <h3>두 번째 인스턴스 영역</h3>
+            <my-global-component></my-global-component>
+            <my-local-component></my-local-component>
+        </div>
         <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
         <script>
             Vue.component('my-global-component',{
@@ -19,11 +24,15 @@
                 template: '<div>지역 컴포넌트가 등록되었습니다,</div>'
             };
 
-            new Vue({
+            new Vue({  
                 el: '#app',
                 components : {
                     'my-local-component': cmp
                 }
+            });
+            // 두번째 인스턴스
+            new Vue({  
+                el: '#app2'
             });
 
         </script>

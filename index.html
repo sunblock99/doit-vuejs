@@ -1,41 +1,27 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <title>Vue Component Scope</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Props Sample</title>
   </head>
   <body>
     <div id="app">
-      <my-component1></my-component1>
-      <my-component2></my-component2>
+      <!-- 팁 : 오른쪽에서 왼쪽으로 속성을 읽으면 더 수월합니다. -->
+      <child-component v-bind:propsdata="message"></child-component>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
     <script>
-      // 첫 번째 컴포넌트 내용
-      var cmp1 = {
-        template: '<div>첫 번째 지역 컴포넌트 : {{ cmp1Data }}</div>',
-        data: function() {
-          return {
-            cmp1Data : 100
-          }
-        }
-      };
-
-      // 두 번째 컴포넌트 내용
-      var cmp2 = {
-        template: '<div>두 번째 지역 컴포넌트 : {{ cmp2Data }}</div>',
-        data: function() {
-          return {
-            cmp2Data : cmp1.data.cmp1Data
-          }
-        }
-      };
+      Vue.component('child-component', {
+        props: ['propsdata'],
+        template: '<p>{{ propsdata }}</p>',
+      });
 
       new Vue({
         el: '#app',
-        // 지역 컴포넌트 등록
-        components: {
-          'my-component1': cmp1,
-          'my-component2': cmp2
+        data: {
+          message: 'Hello Vue! passed from Parent Component'
         }
       });
     </script>

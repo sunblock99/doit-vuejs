@@ -1,27 +1,11 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <title>Vue Template - Computed vs Methods</title>
+    <meta charset="utf-8">
+    <title>cli-template</title>
   </head>
   <body>
-    <div id="app">
-      <p>{{ message }}</p>
-      <button v-on:click="reverseMsg">문자열 역순</button>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
-    <script>
-      new Vue({
-        el: '#app',
-        data: {
-          message: 'Hello Vue.js!'
-        },
-        methods: {
-          reverseMsg: function() {
-            this.message = this.message.split('').reverse().join('');
-            return this.message;
-          }
-        }
-      });
-    </script>
+    <div id="app"></div>
+    <script src="/dist/build.js"></script>
   </body>
 </html>

@@ -7,30 +7,34 @@
   </head>
   <body>
     <div id="app">
-      <child-component></child-component>
+      <h1>뷰 라우터 예제</h1>
+      <p>
+      <router-link to="/main">Main 컴포넌트로 이동</router-link>
+      <router-link to="/login">Login 컴포넌트로 이동</router-link>
+      </p>   
+      <router-view></router-view>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router@3.0.1/dist/vue-router.js"></script>
+
     <script>
-      var eventBus = new Vue();
+    var Main = { template: '<div>main</div>'}
+    var Login = { template: '<div>login</div>'}
 
-      Vue.component('child-component', {
-        template: '<div>하위 컴포넌트 영역입니다.<button v-on:click="showLog">show</button></div>',
-        methods: {
-          showLog: function () {
-            eventBus.$emit('triggerEventBus', 100);
-          }
-        }
-      });
+    var routes = [
+      { Path: '/main', component: Main},
+      { Path: '/login', component: Login}
+    ];
+    var router = new VueRouter({
+      routes
+    });
 
-      var app = new Vue({
-        el: '#app',
-        created: function () {
-          eventBus.$on('triggerEventBus', function (value) {
-            console.log("이벤트 전달받음!  전달받은값은 : ", value);
-          });
-        }
-      });
+    var app = new Vue({
+      router
+    }).$mount('#app');
+
+
     </script>
   </body>
 </html>

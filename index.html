@@ -1,29 +1,27 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vue Nested Router</title>
+    <title>Vue Template - Computed vs Methods</title>
   </head>
   <body>
     <div id="app">
-      <button v-on:click="getData">프레임워크 목록 가져오기</button>
+      <p>{{ message }}</p>
+      <button v-on:click="reverseMsg">문자열 역순</button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
       new Vue({
         el: '#app',
+        data: {
+          message: 'Hello Vue.js!'
+        },
         methods: {
-          getData: function () {
-            axios.get('https://raw.githubusercontent.com/joshua1988/doit-vuejs/master/data/demo.json')
-            .then(function (params) {
-              console.log(params);
-            });
+          reverseMsg: function() {
+            this.message = this.message.split('').reverse().join('');
+            return this.message;
           }
         }
-      })
+      });
     </script>
   </body>
 </html>

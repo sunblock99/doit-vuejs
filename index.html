@@ -7,42 +7,29 @@
   </head>
   <body>
     <div id="app">
+      <router-view name="header"></router-view>
       <router-view></router-view>
+      <router-view name="footer"></router-view>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router@3.0.1/dist/vue-router.js"></script>
     <script>
-      var User = {
-        template: `
-          <div>
-            User Component
-            <router-view></router-view>
-          </div>
-        `
-      };
-      var UserProfile = { template: '<p>User Profile Component</p>' };
-      var UserPost = { template: '<p>User Post Component</p>' };
-
-      var routes = [
-        {
-          path: '/user',
-          component: User,
-          children: [
-            {
-              path: 'posts',
-              component: UserPost
-            },
-            {
-              path: 'profile',
-              component: UserProfile
-            },
-          ]
-        }
-      ];
+      var Body = { template: '<div>This is Body</div>' };
+      var Header = { template: '<div>This is Header</div>' };
+      var Footer = { template: '<div>This is Footer</div>' };
 
       var router = new VueRouter({
-        routes
+        routes: [
+          {
+            path: '/',
+            components:{
+              default: Body,
+              header: Header,
+              footer: Footer
+            }
+          }
+        ]
       });
 
       var app = new Vue({

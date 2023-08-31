@@ -2,11 +2,10 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  
   entry: './src/main.js',
   output: {
-    path: path.resolve(__dirname, './docs'),
-    publicPath: '/docs/',
+    path: path.resolve(__dirname, 'docs'),
+    publicPath: '/doit-vuejs/',
     filename: 'build.js'
   },
   module: {
